@@ -527,7 +527,7 @@ int16_t pwmSin[] = {
 int16_t phase_A_position;
 int16_t phase_B_position;
 int16_t phase_C_position;
-uint16_t step_delay = 100;
+uint16_t step_delay = 15;
 char stepper_sine = 0;
 char forward = 1;
 uint16_t gate_drive_offset = DEAD_TIME;
