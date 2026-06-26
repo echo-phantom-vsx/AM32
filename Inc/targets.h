@@ -1756,25 +1756,49 @@
 #define USE_SERIAL_TELEMETRY
 #define USE_LED_STRIP
 #define WS2812_PIN GPIO_PINS_7
-  
-#define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
+
+#define PHASE_A_GPIO_LOW        GPIO_PINS_1
 #define PHASE_A_GPIO_PORT_LOW   GPIOB
-#define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
+#define PHASE_A_GPIO_HIGH       GPIO_PINS_10
 #define PHASE_A_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_B_GPIO_LOW        LL_GPIO_PIN_0
+#define PHASE_B_GPIO_LOW        GPIO_PINS_0
 #define PHASE_B_GPIO_PORT_LOW   GPIOB
-#define PHASE_B_GPIO_HIGH       LL_GPIO_PIN_9
+#define PHASE_B_GPIO_HIGH       GPIO_PINS_9
 #define PHASE_B_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_C_GPIO_LOW        LL_GPIO_PIN_7
+#define PHASE_C_GPIO_LOW        GPIO_PINS_7
 #define PHASE_C_GPIO_PORT_LOW   GPIOA
-#define PHASE_C_GPIO_HIGH       LL_GPIO_PIN_8
+#define PHASE_C_GPIO_HIGH       GPIO_PINS_8
 #define PHASE_C_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_A_COMP COMP_PA5
-#define PHASE_B_COMP COMP_PA4
-#define PHASE_C_COMP COMP_PA0
+#define PHASE_A_COMP 0x400000D5 // pa5
+#define PHASE_B_COMP 0x400000C5 // pa4
+#define PHASE_C_COMP 0x400000E5 // pa0
+#endif
+#ifdef AORC_K_A_F421
+  #undef PHASE_A_GPIO_LOW
+  #undef PHASE_A_GPIO_HIGH
+  #undef PHASE_B_GPIO_LOW
+  #undef PHASE_B_GPIO_HIGH
+  #undef PHASE_C_GPIO_LOW
+  #undef PHASE_C_GPIO_HIGH
+  #undef PHASE_A_COMP
+  #undef PHASE_B_COMP
+  #undef PHASE_C_COMP
+
+  #define PHASE_A_GPIO_LOW        GPIO_PINS_1
+  #define PHASE_A_GPIO_HIGH       GPIO_PINS_10
+  #define PHASE_B_GPIO_LOW        GPIO_PINS_0
+  #define PHASE_B_GPIO_HIGH       GPIO_PINS_9
+  #define PHASE_C_GPIO_LOW        GPIO_PINS_7
+  #define PHASE_C_GPIO_HIGH       GPIO_PINS_8
+
+  #define PHASE_A_COMP            0x400000D5
+  #define PHASE_B_COMP            0x400000C5
+  #define PHASE_C_COMP            0x400000E5
+  
+  #define __AORC_LOCKED__
 #endif
 
 
@@ -4631,19 +4655,6 @@
 #define INPUT_DMA_CHANNEL DMA1_CHANNEL4
 #define IC_DMA_IRQ_NAME DMA1_Channel5_4_IRQn
 
-#ifndef __AORC_LOCKED__
-#define PHASE_A_GPIO_LOW GPIO_PINS_1
-#define PHASE_A_GPIO_HIGH GPIO_PINS_10
-#define PHASE_B_GPIO_LOW GPIO_PINS_0
-#define PHASE_B_GPIO_HIGH GPIO_PINS_9
-#define PHASE_C_GPIO_LOW GPIO_PINS_7
-#define PHASE_C_GPIO_HIGH GPIO_PINS_8
-
-#define PHASE_A_COMP 0x400000D5 // pa5
-#define PHASE_B_COMP 0x400000C5 // pa4
-#define PHASE_C_COMP 0x400000E5 // pa0
-#endif
-
 #define PHASE_A_GPIO_LOW GPIO_PINS_1
 #define PHASE_A_PIN_SOURCE_LOW GPIO_PINS_SOURCE1
 #define PHASE_A_GPIO_PORT_LOW GPIOB
@@ -5262,32 +5273,6 @@
 #define PHASE_C_GPIO_PORT_HIGH  GPIOA
 
 
-#endif
-
-#ifdef AORC_K_A_F421
-  #undef PHASE_A_GPIO_LOW
-  #undef PHASE_A_GPIO_HIGH
-  #undef PHASE_B_GPIO_LOW
-  #undef PHASE_B_GPIO_HIGH
-  #undef PHASE_C_GPIO_LOW
-  #undef PHASE_C_GPIO_HIGH
-  #undef PHASE_A_COMP
-  #undef PHASE_B_COMP
-  #undef PHASE_C_COMP
-
-  #define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
-  #define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
-  #define PHASE_B_GPIO_LOW        LL_GPIO_PIN_0
-  #define PHASE_B_GPIO_HIGH       LL_GPIO_PIN_9
-  #define PHASE_C_GPIO_LOW        LL_GPIO_PIN_7
-  #define PHASE_C_GPIO_HIGH       LL_GPIO_PIN_8
-
-  #define PHASE_A_COMP            COMP_PA5
-  #define PHASE_B_COMP            COMP_PA4
-  #define PHASE_C_COMP            COMP_PA0
-  
-  // Mengunci makro di atas agar tidak ditimpa oleh baris 4600 bawaan AM32
-  #define __AORC_LOCKED__
 #endif
 
 /************************************ MCU COMMON PERIPHERALS
