@@ -1466,8 +1466,7 @@ void tenKhzRoutine()
                 max_duty_cycle_change = voltage_based_max_change * 3;
             }
 #else
-#else
-            // MODIFIKASI: Jika motor merayap sangat pelan, berikan kelonggaran akselerasi arus (dikali 3) agar tidak tersendat
+            // MODIFIKASI: Mengganti blok #else asli dengan pengkondisian kustom Anda yang aman dari eror
             if (zero_crosses < 150 || last_duty_cycle < 150) {   
                 max_duty_cycle_change = max_ramp_startup * 3; 
             } else {
