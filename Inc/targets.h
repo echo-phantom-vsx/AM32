@@ -1763,36 +1763,6 @@
 #endif
 
 #ifdef AORC_K_A_F421
-// 1. BERSIHKAN SEMUA BENTROKAN SEBELUM DIRETAS
-#undef FIRMWARE_NAME
-#undef FILE_NAME
-#undef DEAD_TIME
-#undef HARDWARE_GROUP_AT_B
-#undef HARDWARE_GROUP_AT_540
-#undef USE_SERIAL_TELEMETRY
-#undef USE_LED_STRIP
-#undef WS2812_PIN
-
-#undef PHASE_A_GPIO_LOW
-#undef PHASE_A_GPIO_PORT_LOW
-#undef PHASE_A_GPIO_HIGH
-#undef PHASE_A_GPIO_PORT_HIGH
-
-#undef PHASE_B_GPIO_LOW
-#undef PHASE_B_GPIO_PORT_LOW
-#undef PHASE_B_GPIO_HIGH
-#undef PHASE_B_GPIO_PORT_HIGH
-
-#undef PHASE_C_GPIO_LOW
-#undef PHASE_C_GPIO_PORT_LOW
-#undef PHASE_C_GPIO_HIGH
-#undef PHASE_C_GPIO_PORT_HIGH
-
-#undef PHASE_A_COMP
-#undef PHASE_B_COMP
-#undef PHASE_C_COMP
-
-// 2. SETTING UTAMA TARGET ESC ANDA
 #define FIRMWARE_NAME "AORC_K_F421"
 #define FILE_NAME "AORC_K_A_F421"
 #define DEAD_TIME 80
@@ -1820,34 +1790,10 @@
 #define PHASE_A_COMP COMP_PA5
 #define PHASE_B_COMP COMP_PA4
 #define PHASE_C_COMP COMP_PA0
+
+// Trik bypass: paksa matikan pembacaan target lain di bawahnya yang bentrok
+#undef AORC_K_A_F421 
 #endif
-
-// ========================================================
-// 3. OVERRIDE MUTLAK DI BAGIAN PALING BAWAH FILE TARGETS.H
-// ========================================================
-#ifdef AORC_K_A_F421
-#undef PHASE_A_GPIO_LOW
-#undef PHASE_A_GPIO_HIGH
-#undef PHASE_B_GPIO_LOW
-#undef PHASE_B_GPIO_HIGH
-#undef PHASE_C_GPIO_LOW
-#undef PHASE_C_GPIO_HIGH
-#undef PHASE_A_COMP
-#undef PHASE_B_COMP
-#undef PHASE_C_COMP
-
-#define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
-#define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
-#define PHASE_B_GPIO_LOW        LL_GPIO_PIN_0
-#define PHASE_B_GPIO_HIGH       LL_GPIO_PIN_9
-#define PHASE_C_GPIO_LOW        LL_GPIO_PIN_7
-#define PHASE_C_GPIO_HIGH       LL_GPIO_PIN_8
-
-#define PHASE_A_COMP            COMP_PA5
-#define PHASE_B_COMP            COMP_PA4
-#define PHASE_C_COMP            COMP_PA0
-#endif
-
 
 
 
