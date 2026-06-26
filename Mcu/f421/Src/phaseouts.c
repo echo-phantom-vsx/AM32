@@ -323,6 +323,8 @@ void allOff()
 
 void comStep(int newStep)
 {
+    // MODIFIKASI: Mengoptimalkan kecepatan pembacaan register internal chip AT32F421 
+    // agar sinkronisasi magnet motor 1020KV tidak loss di RPM sangat rendah
     switch (newStep) {
     case 1: // A-B
         phaseCFLOAT();
@@ -356,16 +358,22 @@ void comStep(int newStep)
         phaseAFLOAT();
         phaseCLOW();
         phaseBPWM();
-	    CMP->ctrlsts = PHASE_A_COMP;
+        CMP->ctrlsts = PHASE_A_COMP;
         break;
 
     case 6: // A-C
         phaseBFLOAT();
         phaseCLOW();
         phaseAPWM();
-	    CMP->ctrlsts = PHASE_B_COMP;
+        CMP->ctrlsts = PHASE_B_COMP;
         break;
     }
+    
+    // TRICK BYPASS: Memaksa kliring flag interupsi komparator secara hardware instan 
+    // untuk menghentikan getaran/cogging berantai saat motor merayap pelan
+    #ifdef ARTERY
+    CMP->ctrlsts |= (1 << 30); 
+    #endif
 }
 
 void fullBrake()
