@@ -42,6 +42,21 @@
 // GLOBAL
 // #define USE_ADC_INPUT
 // #define USE_ALKAS_DEBUG_LED
+#ifndef 	TARGET_VOLTAGE_DIVIDER
+#define 	TARGET_VOLTAGE_DIVIDER  	110
+#endif
+
+#ifndef 	SINE_DIVIDER
+#define 	SINE_DIVIDER 				3
+#endif
+
+#ifndef  	MILLIVOLT_PER_AMP
+#define     MILLIVOLT_PER_AMP           20
+#endif 
+
+#ifndef 	CURRENT_OFFSET
+#define     CURRENT_OFFSET              0
+#endif
 
 
 #ifdef LUMENIER_12S_F421
@@ -1756,6 +1771,24 @@
 #define USE_SERIAL_TELEMETRY
 #define USE_LED_STRIP
 #define WS2812_PIN GPIO_PINS_7
+#define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
+#define PHASE_A_GPIO_PORT_LOW   GPIOB
+#define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
+#define PHASE_A_GPIO_PORT_HIGH  GPIOA
+
+#define PHASE_B_GPIO_LOW        LL_GPIO_PIN_0
+#define PHASE_B_GPIO_PORT_LOW   GPIOB
+#define PHASE_B_GPIO_HIGH       LL_GPIO_PIN_9
+#define PHASE_B_GPIO_PORT_HIGH  GPIOA
+
+#define PHASE_C_GPIO_LOW        LL_GPIO_PIN_7
+#define PHASE_C_GPIO_PORT_LOW   GPIOA
+#define PHASE_C_GPIO_HIGH       LL_GPIO_PIN_8
+#define PHASE_C_GPIO_PORT_HIGH  GPIOA
+
+#define PHASE_A_COMP COMP_PA5
+#define PHASE_B_COMP COMP_PA4
+#define PHASE_C_COMP COMP_PA0
 #endif
 
 #ifdef LSASRC_F421
