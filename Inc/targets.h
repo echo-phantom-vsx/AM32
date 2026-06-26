@@ -1771,27 +1771,7 @@
 #define USE_SERIAL_TELEMETRY
 #define USE_LED_STRIP
 #define WS2812_PIN GPIO_PINS_7
-#define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
-#define PHASE_A_GPIO_PORT_LOW   GPIOB
-#define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
-#define PHASE_A_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_B_GPIO_LOW        LL_GPIO_PIN_0
-#define PHASE_B_GPIO_PORT_LOW   GPIOB
-#define PHASE_B_GPIO_HIGH       LL_GPIO_PIN_9
-#define PHASE_B_GPIO_PORT_HIGH  GPIOA
-
-#define PHASE_C_GPIO_LOW        LL_GPIO_PIN_7
-#define PHASE_C_GPIO_PORT_LOW   GPIOA
-#define PHASE_C_GPIO_HIGH       LL_GPIO_PIN_8
-#define PHASE_C_GPIO_PORT_HIGH  GPIOA
-
-#define PHASE_A_COMP COMP_PA5
-#define PHASE_B_COMP COMP_PA4
-
-// Baris di bawah ini untuk menghapus paksa definisi ganda yang bentrok
-#undef PHASE_C_COMP
-#define PHASE_C_COMP COMP_PA0
 #endif
 
 
