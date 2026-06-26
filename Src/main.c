@@ -423,7 +423,7 @@ uint16_t TIMER1_MAX_ARR = TIM1_AUTORELOAD; // maximum auto reset register value
 uint16_t duty_cycle_maximum = 2000; // restricted by temperature or low rpm throttle protect
 uint16_t low_rpm_level = 20; // thousand erpm used to set range for throttle resrictions
 uint16_t high_rpm_level = 70; //
-uint16_t throttle_max_at_low_rpm = 400;
+uint16_t throttle_max_at_low_rpm = 800;
 uint16_t throttle_max_at_high_rpm = 2000;
 
 uint16_t commutation_intervals[6] = { 0 };
@@ -1466,8 +1466,10 @@ void tenKhzRoutine()
                 max_duty_cycle_change = voltage_based_max_change * 3;
             }
 #else
+#else
+            // MODIFIKASI: Jika motor merayap sangat pelan, berikan kelonggaran akselerasi arus (dikali 3) agar tidak tersendat
             if (zero_crosses < 150 || last_duty_cycle < 150) {   
-                max_duty_cycle_change = max_ramp_startup;
+                max_duty_cycle_change = max_ramp_startup * 3; 
             } else {
                 if (average_interval > 500) {
                     max_duty_cycle_change = max_ramp_low_rpm;
@@ -1475,8 +1477,8 @@ void tenKhzRoutine()
                     max_duty_cycle_change = max_ramp_high_rpm;
                 }
             }
-          
 #endif
+
 #ifdef CUSTOM_RAMP
    //         max_duty_cycle_change = eepromBuffer[30];
 #endif
@@ -1551,44 +1553,34 @@ void advanceincrement()
 {
     if (!forward) {
         phase_A_position++;
-        if (phase_A_position > 359) {
-            phase_A_position = 0;
-        }
+        if (phase_A_position > 359) phase_A_position = 0;
         phase_B_position++;
-        if (phase_B_position > 359) {
-            phase_B_position = 0;
-        }
+        if (phase_B_position > 359) phase_B_position = 0;
         phase_C_position++;
-        if (phase_C_position > 359) {
-            phase_C_position = 0;
-        }
+        if (phase_C_position > 359) phase_C_position = 0;
     } else {
         phase_A_position--;
-        if (phase_A_position < 0) {
-            phase_A_position = 359;
-        }
+        if (phase_A_position < 0) phase_A_position = 359;
         phase_B_position--;
-        if (phase_B_position < 0) {
-            phase_B_position = 359;
-        }
+        if (phase_B_position < 0) phase_B_position = 359;
         phase_C_position--;
-        if (phase_C_position < 0) {
-            phase_C_position = 359;
-        }
+        if (phase_C_position < 0) phase_C_position = 359;
     }
 #ifdef GIMBAL_MODE
     setPWMCompare1(((2 * pwmSin[phase_A_position]) + gate_drive_offset) * TIMER1_MAX_ARR / 2000);
     setPWMCompare2(((2 * pwmSin[phase_B_position]) + gate_drive_offset) * TIMER1_MAX_ARR / 2000);
     setPWMCompare3(((2 * pwmSin[phase_C_position]) + gate_drive_offset) * TIMER1_MAX_ARR / 2000);
 #else
+    // MODIFIKASI: Mengubah pembagi /10 menjadi /100 untuk kehalusan dan torsi merayap maksimal
     setPWMCompare1(
-        (((2 * pwmSin[phase_A_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * eepromBuffer.sine_mode_power / 10);
+        (((2 * pwmSin[phase_A_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * (eepromBuffer.sine_mode_power * 10) / 100);
     setPWMCompare2(
-        (((2 * pwmSin[phase_B_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * eepromBuffer.sine_mode_power / 10);
+        (((2 * pwmSin[phase_B_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * (eepromBuffer.sine_mode_power * 10) / 100);
     setPWMCompare3(
-        (((2 * pwmSin[phase_C_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * eepromBuffer.sine_mode_power / 10);
+        (((2 * pwmSin[phase_C_position] / SINE_DIVIDER) + gate_drive_offset) * TIMER1_MAX_ARR / 2000) * (eepromBuffer.sine_mode_power * 10) / 100);
 #endif
 }
+
 
 void zcfoundroutine()
 { // only used in polling mode, blocking routine.
