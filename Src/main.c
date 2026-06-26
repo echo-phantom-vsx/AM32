@@ -395,7 +395,7 @@ char lowkv = 0;
 
 uint16_t min_startup_duty = 120;
 uint16_t sin_mode_min_s_d = 120;
-char bemf_timeout = 10;
+char bemf_timeout = 100;
 
 char startup_boost = 50;
 char reversing_dead_band = 1;
@@ -416,7 +416,7 @@ uint16_t startup_max_duty_cycle = 200;
 uint16_t minimum_duty_cycle = DEAD_TIME;
 uint16_t stall_protect_minimum_duty = DEAD_TIME;
 char desync_check = 0;
-char low_kv_filter_level = 20;
+char low_kv_filter_level = 0;
 
 uint16_t tim1_arr = TIM1_AUTORELOAD; // current auto reset value
 uint16_t TIMER1_MAX_ARR = TIM1_AUTORELOAD; // maximum auto reset register value
