@@ -1763,16 +1763,18 @@
 #endif
 
 #ifdef AORC_K_A_F421
-#define FIRMWARE_NAME "AORC_K_F421"
-#define FILE_NAME "AORC_K_A_F421"
-#define DEAD_TIME 80
-#define HARDWARE_GROUP_AT_B
-#define HARDWARE_GROUP_AT_540
-#define USE_SERIAL_TELEMETRY
-#define USE_LED_STRIP
-#define WS2812_PIN GPIO_PINS_7
 
-// 1. Bersihkan semua definisi pin bawaan yang berpotensi bentrok
+// 1. BERSIHKAN SYSTEM CONFIG TERLEBIH DAHULU
+#undef FIRMWARE_NAME
+#undef FILE_NAME
+#undef DEAD_TIME
+#undef HARDWARE_GROUP_AT_B
+#undef HARDWARE_GROUP_AT_540
+#undef USE_SERIAL_TELEMETRY
+#undef USE_LED_STRIP
+#undef WS2812_PIN
+
+// 2. BERSIHKAN SEMUA PIN GPIO FASE A, B, DAN C
 #undef PHASE_A_GPIO_LOW
 #undef PHASE_A_GPIO_PORT_LOW
 #undef PHASE_A_GPIO_HIGH
@@ -1788,11 +1790,23 @@
 #undef PHASE_C_GPIO_HIGH
 #undef PHASE_C_GPIO_PORT_HIGH
 
+// 3. BERSIHKAN SEMUA PIN KOMPARATOR
 #undef PHASE_A_COMP
 #undef PHASE_B_COMP
 #undef PHASE_C_COMP
 
-// 2. Terapkan konfigurasi pin kustom Anda secara mutlak
+// ==========================================
+// 4. KUNCI KONFIGURASI KUSTOM ANDA SECARA MUTLAK
+// ==========================================
+#define FIRMWARE_NAME           "AORC_K_F421"
+#define FILE_NAME               "AORC_K_A_F421"
+#define DEAD_TIME               80
+#define HARDWARE_GROUP_AT_B
+#define HARDWARE_GROUP_AT_540
+#define USE_SERIAL_TELEMETRY
+#define USE_LED_STRIP
+#define WS2812_PIN              GPIO_PINS_7
+
 #define PHASE_A_GPIO_LOW        LL_GPIO_PIN_1
 #define PHASE_A_GPIO_PORT_LOW   GPIOB
 #define PHASE_A_GPIO_HIGH       LL_GPIO_PIN_10
@@ -1811,6 +1825,7 @@
 #define PHASE_A_COMP            COMP_PA5
 #define PHASE_B_COMP            COMP_PA4
 #define PHASE_C_COMP            COMP_PA0
+
 #endif
 
 
