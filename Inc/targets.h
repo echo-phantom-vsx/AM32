@@ -1788,8 +1788,12 @@
 
 #define PHASE_A_COMP COMP_PA5
 #define PHASE_B_COMP COMP_PA4
+
+// Baris di bawah ini untuk menghapus paksa definisi ganda yang bentrok
+#undef PHASE_C_COMP
 #define PHASE_C_COMP COMP_PA0
 #endif
+
 
 #ifdef LSASRC_F421
 #define FIRMWARE_NAME "LSASRC_F421"
