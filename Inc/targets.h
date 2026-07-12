@@ -4856,9 +4856,9 @@
 #define PHASE_C_COMP 0x400000D5 // pa5
 #endif
 #ifdef HARDWARE_GROUP_AT_540
-#define PHASE_A_COMP 0x400000E5 // pa0           
+#define PHASE_A_COMP 0x400000D5 // pa5           
 #define PHASE_B_COMP 0x400000C5 // pa4
-#define PHASE_C_COMP 0x400000D5 // pa5
+#define PHASE_C_COMP 0x400000E5 // pa0
 #endif
 
 #ifdef HARDWARE_GROUP_AT_245
