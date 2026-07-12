@@ -1788,9 +1788,9 @@
 #define PHASE_C_GPIO_HIGH       GPIO_PINS_8
 #define PHASE_C_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_A_COMP 0x400000C5 // pa4
-#define PHASE_B_COMP 0x400000D5 // pa5
-#define PHASE_C_COMP 0x400000E5 // pa0
+#define PHASE_A_COMP COMP_PA4
+#define PHASE_B_COMP COMP_PA5
+#define PHASE_C_COMP COMP_PA0
 #endif
 
 #ifdef AORC_K_A_F421
@@ -1811,9 +1811,9 @@
   #define PHASE_C_GPIO_LOW        GPIO_PINS_7
   #define PHASE_C_GPIO_HIGH       GPIO_PINS_8
 
-#define PHASE_B_COMP 0x400000D5 // pa5
-#define PHASE_A_COMP 0x400000C5 // pa4
-#define PHASE_C_COMP 0x400000E5 // pa0
+#define PHASE_A_COMP COMP_PA4
+#define PHASE_B_COMP COMP_PA5
+#define PHASE_C_COMP COMP_PA0
   
   #define __AORC_LOCKED__
 #endif
