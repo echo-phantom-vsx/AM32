@@ -1747,6 +1747,22 @@
 #define USE_SERIAL_TELEMETRY
 #endif
 
+#ifndef 	TARGET_VOLTAGE_DIVIDER
+#define 	TARGET_VOLTAGE_DIVIDER  	110
+#endif
+
+#ifndef 	SINE_DIVIDER
+#define 	SINE_DIVIDER 				3
+#endif
+
+#ifndef  	MILLIVOLT_PER_AMP
+#define     MILLIVOLT_PER_AMP           20
+#endif 
+
+#ifndef 	CURRENT_OFFSET
+#define     CURRENT_OFFSET              0
+#endif
+
 #ifdef AORC_K_A_F421
 #define FIRMWARE_NAME "AORC_K_F421"
 #define FILE_NAME "AORC_K_A_F421"
@@ -1772,8 +1788,8 @@
 #define PHASE_C_GPIO_HIGH       GPIO_PINS_8
 #define PHASE_C_GPIO_PORT_HIGH  GPIOA
 
-#define PHASE_A_COMP 0x400000D5 // pa5
-#define PHASE_B_COMP 0x400000C5 // pa4
+#define PHASE_A_COMP 0x400000C5 // pa4
+#define PHASE_B_COMP 0x400000D5 // pa5
 #define PHASE_C_COMP 0x400000E5 // pa0
 #endif
 
@@ -1795,9 +1811,9 @@
   #define PHASE_C_GPIO_LOW        GPIO_PINS_7
   #define PHASE_C_GPIO_HIGH       GPIO_PINS_8
 
-  #define PHASE_A_COMP            0x400000D5
-  #define PHASE_B_COMP            0x400000C5
-  #define PHASE_C_COMP            0x400000E5
+#define PHASE_A_COMP 0x400000C5 // pa4
+#define PHASE_B_COMP 0x400000D5 // pa5
+#define PHASE_C_COMP 0x400000E5 // pa0
   
   #define __AORC_LOCKED__
 #endif
